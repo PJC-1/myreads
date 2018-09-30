@@ -9,7 +9,8 @@ class BooksApp extends React.Component {
   state = {
     currentlyReading: [],
     wantToRead: [],
-    read: []
+    read: [],
+    queryResults: []
   }
 
   componentDidMount() {
@@ -38,7 +39,12 @@ class BooksApp extends React.Component {
             changeShelf={ (book, shelf) => BooksAPI.update(book, shelf).then(this.refreshStateData) }
           />)}
         />
-        <Route path="/search" component={SearchPage}/>
+        <Route path="/search" render={ () => (
+          <SearchPage
+            searchApi={ (query) => BooksAPI.search(query).then( results => this.setState( {queryResults: results || []} ))}
+            bookMatches={ this.state.queryResults }
+          />)}
+        />
       </div>
     )
   }
