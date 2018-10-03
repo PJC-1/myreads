@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 class SearchPage extends Component {
 
-  findBooks = (event) => {
-    const query = event.target.value;
+  findBooks = (event = false) => {
+    const query = event ? event.target.value : '';
     this.props.queryApi(query);
   }
 
@@ -12,7 +12,7 @@ class SearchPage extends Component {
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <Link className="close-search" to="/">Close</Link>
+          <Link className="close-search" to="/" onClick={() => this.findBooks()}>Close</Link>
           <div className="search-books-input-wrapper">
             <input type="text" placeholder="Search by title or author" onChange={ this.findBooks }/>
           </div>
