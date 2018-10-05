@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import Book from './Book';
 
 class Shelf extends Component {
-  shelfWasChanged = (event, book) => {
-    const newShelf = event.target.value;
-    this.props.changeShelf(book, newShelf);
-  }
-
   render() {
     return (
       <div className="bookshelf">
